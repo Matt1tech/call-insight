@@ -1,0 +1,25 @@
+flowchart LR
+    S([START]) --> P
+
+    subgraph STATE["Shared graph state: transcript, turns, one slice per node, errors, mode"]
+        direction LR
+        P[prepare_transcript] --> L[classify_language]
+        L --> I[classify_intent]
+        I --> SE[analyse_sentiment]
+        SE --> R[assess_resolution]
+        R --> E[extract_evidence]
+        E --> RC[analyse_root_cause]
+        RC --> RK[predict_risks]
+        RK --> A[recommend_action]
+        A --> K[detect_knowledge_gaps]
+        K --> SS[summarise_and_score]
+    end
+
+    SS --> V{validate_output<br/>Pydantic schema<br/>+ verbatim evidence}
+    V -->|valid| END([END: Analysis record])
+    V -.->|invalid in live mode:<br/>retry the failing node once| STATE
+    V -->|still invalid| ERR([END: record with errors noted])
+
+    MODE{{Each node runs in one of two modes}}
+    MODE -.-> LIVE[live: prompt + chat model<br/>structured output]
+    MODE -.-> REPLAY[replay: slice from<br/>reviewed analysis.json]

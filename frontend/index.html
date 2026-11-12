@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light">
+  <title>Call Insight</title>
+  <meta name="description" content="Analysis of ten fictional grocery assistance helpline calls: sentiment, resolution, risk and knowledge gaps.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+
+  <header class="masthead">
+    <div class="wrap">
+      <h1>Call Insight</h1>
+      <p class="sub">Analysis of ten fictional calls to the RM100 grocery assistance helpline.</p>
+    </div>
+  </header>
+
+  <nav class="tabs" aria-label="Views">
+    <div class="wrap">
+      <a href="#/overview" data-route="overview">Overview</a>
+      <a href="#/resolution" data-route="resolution">Resolution</a>
+      <a href="#/risks" data-route="risks">Escalation &amp; risk</a>
+      <a href="#/conversations" data-route="conversations">Conversations</a>
+      <a href="#/gaps" data-route="gaps">Knowledge gaps</a>
+    </div>
+  </nav>
+
+  <form class="filters" id="filters" aria-label="Filters" onsubmit="return false">
+    <div class="wrap filters-inner">
+      <div class="filter-fields" id="filter-fields"></div>
+      <div class="filter-meta">
+        <button type="button" id="reset" class="btn">Reset filters</button>
+        <p id="count" class="count" aria-live="polite">Loading…</p>
+      </div>
+    </div>
+  </form>
+
+  <main id="main" class="wrap" tabindex="-1">
+    <p class="status" role="status">Loading…</p>
+    <noscript><p class="status">This dashboard needs JavaScript to load the analysis.</p></noscript>
+  </main>
+
+  <footer class="wrap foot">
+    <p>All conversations are fictional. Programme rules that were not supplied (eligibility, expiry, rollover, refunds, the 15-item list) are flagged as gaps and never assumed.</p>
+  </footer>
+
+  <script type="module" src="app.js"></script>
+</body>
+</html>

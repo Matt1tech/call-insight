@@ -1,0 +1,46 @@
+---
+config:
+  flowchart:
+    curve: linear
+---
+graph TD;
+	__start__([<p>__start__</p>]):::first
+	prepare_transcript(prepare_transcript)
+	classify_language(classify_language)
+	classify_intent(classify_intent)
+	analyse_sentiment(analyse_sentiment)
+	assess_resolution(assess_resolution)
+	extract_evidence(extract_evidence)
+	analyse_root_cause(analyse_root_cause)
+	predict_risks(predict_risks)
+	recommend_action(recommend_action)
+	detect_knowledge_gaps(detect_knowledge_gaps)
+	summarise_and_score(summarise_and_score)
+	validate_output(validate_output)
+	__end__([<p>__end__</p>]):::last
+	__start__ --> prepare_transcript;
+	analyse_root_cause --> predict_risks;
+	analyse_sentiment --> assess_resolution;
+	assess_resolution --> extract_evidence;
+	classify_intent --> analyse_sentiment;
+	classify_language --> classify_intent;
+	detect_knowledge_gaps --> summarise_and_score;
+	extract_evidence --> analyse_root_cause;
+	predict_risks --> recommend_action;
+	prepare_transcript --> classify_language;
+	recommend_action --> detect_knowledge_gaps;
+	summarise_and_score --> validate_output;
+	validate_output -.-> __end__;
+	validate_output -.-> analyse_root_cause;
+	validate_output -.-> analyse_sentiment;
+	validate_output -.-> assess_resolution;
+	validate_output -.-> classify_intent;
+	validate_output -.-> classify_language;
+	validate_output -.-> detect_knowledge_gaps;
+	validate_output -.-> extract_evidence;
+	validate_output -.-> predict_risks;
+	validate_output -.-> recommend_action;
+	validate_output -.-> summarise_and_score;
+	classDef default fill:#f2f0ff,line-height:1.2
+	classDef first fill-opacity:0
+	classDef last fill:#bfb6fc
