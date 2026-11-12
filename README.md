@@ -6,20 +6,36 @@ No API, deployment or online service is needed to run the demo.
 
 ## Quick start
 
-Requirements: Python 3.12+ and [uv](https://docs.astral.sh/uv/).
+Requirements: Python 3.12+ and [uv](https://docs.astral.sh/uv/) (install with `curl -LsSf https://astral.sh/uv/install.sh | sh`, or see the uv docs for Windows/macOS options).
+
+1. **Clone the repository**
+
+   ```bash
+   git clone https://github.com/Matt1tech/call-insight.git
+   cd call-insight/backend
+   ```
+
+2. **Install dependencies**
+
+   ```bash
+   uv sync
+   ```
+
+3. **Start the app**
+
+   ```bash
+   uv run uvicorn app.main:app --port 8000
+   ```
+
+4. **Open the dashboard** at <http://localhost:8000>. API docs are at <http://localhost:8000/docs>.
+
+Stop the server with `Ctrl+C`. If port 8000 is busy, change `--port`.
+
+No `.env` file or credentials are needed: the app runs in replay mode on the reviewed analysis data. To try live mode, copy `backend/.env.example` to `backend/.env` and fill in the Cloudflare values (see [Two run modes](#two-run-modes)).
+
+Run the tests and lint (from `backend/`):
 
 ```bash
-cd backend
-uv sync
-uv run uvicorn app.main:app --port 8000
-```
-
-Open <http://localhost:8000>. API docs are at <http://localhost:8000/docs>.
-
-Run the tests and lint:
-
-```bash
-cd backend
 uv run pytest -v
 uv run ruff check .
 ```
